@@ -23,7 +23,8 @@ const create = asyncHandler(async (req, res) => {
 
 const get = asyncHandler(async (req, res) => {
     const page = req.query.page || 0;
-    const ticketList = await Ticket.find({ userId: req.user.id }).limit(1).skip(1 * page)
+    const limit = req.query.limit || 1;
+    const ticketList = await Ticket.find({ userId: req.user.id }).limit(limit).skip(limit * page)
     res.json(ticketList);
 })
 
