@@ -23,11 +23,6 @@ const errorHandler = (err, req, res, next) => {
             console.log("No error");
             break;
     }
-
-    res.json({
-        title: "Not Found",
-        msg: err.message
-    });
 };
 
 module.exports = errorHandler;

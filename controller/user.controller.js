@@ -19,7 +19,11 @@ const register = asyncHandler(async (req, res) => {
     const userAvailable = await User.findOne({ email });
     if (userAvailable) {
         res.status(400);
-        throw new Error("User already registered");
+        throw new Error("Email address already register, please login");
+    }
+    if (password.length < 8) {
+        res.status(400);
+        throw new Error("Password length must be greater than equal to 8 characters");
     }
     const hashPassWord = await bcrypt.hash(password, 10);
     const user = await User.create({
