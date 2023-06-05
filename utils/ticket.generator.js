@@ -10,7 +10,6 @@ let col8 = [70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
 let col9 = [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
 
 let columns = [col1, col2, col3, col4, col5, col6, col7, col8, col9]
-
 let Node = Array(6).fill(0).map(() => Array(3)
     .fill(null)
     .map(() => Array(9).fill(0)))
@@ -22,7 +21,8 @@ function generateTambolaTicket() {
     const sets = Array(6).fill(0).map(() => Array(cols)
         .fill(null)
         .map(() => Array()))
-    // Generate random numbers for each column
+
+    // assigning elements to each set for each column
     for (let i = 0; i < 9; i++) {
         let list = columns[i];
         for (let j = 0; j < 6; j++) {
@@ -33,6 +33,7 @@ function generateTambolaTicket() {
         }
     }
 
+    // assign element from last column to random set
     let lastCol = columns[8];
     let randNumIndex = getRand(0, lastCol.length - 1);
     let randNum = lastCol[randNumIndex];
@@ -41,6 +42,7 @@ function generateTambolaTicket() {
     randSet.push(randNum);
     lastCol.splice(randNumIndex, 1);
 
+    // 3 passes over the remaining columns
     for (let pass = 0; pass < 3; pass++) {
         for (let i = 0; i < 9; i++) {
             let col = columns[i];
@@ -61,6 +63,7 @@ function generateTambolaTicket() {
         }
     }
 
+    // one more pass over the remaining columns
     for (let i = 0; i < 9; i++) {
         let col = columns[i];
         if (col.length == 0)
@@ -85,6 +88,8 @@ function generateTambolaTicket() {
             sets[i][j].sort();
         }
     }
+
+    // got the sets - need to arrange in tickets now
     for (let setIndex = 0; setIndex < 6; setIndex++) {
         let currSet = sets[setIndex];
         //fill the first row
@@ -142,12 +147,10 @@ function generateTambolaTicket() {
             }
         }
     }
-    // console.log(Node);
-    // console.log(columns)
     return Node;
 }
 
-
+//function to get the row count
 function getRowCount(ticketNumber, rowNumber) {
     let count = 0;
     for (let i = 0; i < 9; i++) {
@@ -157,18 +160,17 @@ function getRowCount(ticketNumber, rowNumber) {
     return count;
 }
 
+//function to get the number of element in the ticket
 function getNumberOfElementsInSet(set) {
     let count = 0;
     set.forEach(element => count += element.length)
     return count;
 }
 
+//function to get the random number
 function getRand(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-// Generate a Tambola ticket
-// const ticket = generateTambolaTicket();
 
 module.exports = {
     generateTambolaTicket
