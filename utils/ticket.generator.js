@@ -1,18 +1,21 @@
-
-let col1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-let col2 = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-let col3 = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
-let col4 = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
-let col5 = [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
-let col6 = [50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
-let col7 = [60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
-let col8 = [70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
-let col9 = [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
-
-let columns = [col1, col2, col3, col4, col5, col6, col7, col8, col9]
+let columns = [
+    addCol(1, 9),
+    addCol(10, 10),
+    addCol(20, 10),
+    addCol(30, 10),
+    addCol(40, 10),
+    addCol(50, 10),
+    addCol(60, 10),
+    addCol(70, 10),
+    addCol(80, 11),
+];
 let Node = Array(6).fill(0).map(() => Array(3)
     .fill(null)
     .map(() => Array(9).fill(0)))
+
+function addCol(startFrom, count) {
+    return Array.from({ length: count }, (_, index) => startFrom + index);
+}
 
 function generateTambolaTicket() {
     const rows = 3;
