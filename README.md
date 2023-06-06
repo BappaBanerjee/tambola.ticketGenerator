@@ -1,4 +1,4 @@
-# tambola.ticketGenerator
+# Tambola Ticket Generator
 Tambola ticket generator using nodejs
 
 # Description 
@@ -14,3 +14,5 @@ The project is a tambola ticket generator using nodejs. The script will generate
 ● Each column must have at least 1 number
 ● Blank Cell fill by zero or “x
 ```
+
+
