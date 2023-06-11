@@ -84,7 +84,6 @@ function generateTambolaTicket() {
             col.splice(randNumIndex_p, 1);
         }
     }
-
     // sort the internal sets
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 9; j++) {
@@ -92,6 +91,17 @@ function generateTambolaTicket() {
         }
     }
 
+    //filling col with 0's in random position
+    for (let curIndex = 0; curIndex < 6; curIndex++) {
+        let currSet = sets[curIndex];
+        for(let i=0;i<currSet.length;i++){
+            while(currSet[i].length < 3){
+                let randIndex = getRand(0,2);
+                currSet[i].splice(randIndex, 0, 0);
+            }
+        }
+    }
+  
     // got the sets - need to arrange in tickets now
     for (let setIndex = 0; setIndex < 6; setIndex++) {
         let currSet = sets[setIndex];
@@ -106,6 +116,7 @@ function generateTambolaTicket() {
                     continue;
 
                 let currSetCol = currSet[colIndex];
+                
                 if (currSetCol.length != size)
                     continue;
                 Node[setIndex][0][colIndex] = currSetCol[0];
@@ -113,7 +124,7 @@ function generateTambolaTicket() {
             }
         }
         //fill the second row
-        for (let size = 2; size > 0; size--) {
+        for (let size = 3; size > 0; size--) {
             if (getRowCount(setIndex, 1) == 5)
                 break;
             for (let colIndex = 0; colIndex < 9; colIndex++) {
@@ -125,14 +136,14 @@ function generateTambolaTicket() {
                 let currSetCol = currSet[colIndex];
                 if (currSetCol.length != size)
                     continue;
-
                 Node[setIndex][1][colIndex] = currSetCol[0];
                 currSetCol.splice(0, 1);
             }
         }
 
+        
         //fill the third row
-        for (let size = 1; size > 0; size--) {
+        for (let size = 3; size > 0; size--) {
             if (getRowCount(setIndex, 2) == 5)
                 break;
             for (let colIndex = 0; colIndex < 9; colIndex++) {

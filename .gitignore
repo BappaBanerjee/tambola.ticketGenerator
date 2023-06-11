@@ -1,3 +1,6 @@
 node_modules
 testserver.js
 .env
+
+array.txt
+ticketGenarator1.js
